@@ -1,4 +1,5 @@
 # BitBucket Server CLI
+[![Build Status](https://travis-ci.org/jensim/bitbucket-server-cli-node.svg?branch=master)](https://travis-ci.org/jensim/bitbucket-server-cli-node)
 
 # WORK IN PROGRESS
 
