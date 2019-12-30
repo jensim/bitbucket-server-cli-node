@@ -14,7 +14,9 @@
   "license": "ISC",
   "dependencies": {
     "@types/inquirer": "^6.5.0",
+    "@types/node": "^13.1.1",
     "@types/request-promise": "^4.1.45",
+    "@types/util.promisify": "^1.0.1",
     "inquirer": "^7.0.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.5"
