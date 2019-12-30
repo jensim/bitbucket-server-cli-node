@@ -5,21 +5,28 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "build-dev": "rimraf dist && webpack --config webpack.config.js",
-    "build": "rimraf dist && webpack --config webpack.config.prod.js",
-    "start": "npm run build-dev && node dist/index.js",
-    "pretest": "npm run build-dev"
+    "build": "rimraf dist && webpack --mode=development",
+    "start": "node dist/main.js --enable-source-maps",
+    "prestart": "npm run build",
+    "pretest": "npm run build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "inquirer": "^7.0.1"
+    "@types/inquirer": "^6.5.0",
+    "@types/request-promise": "^4.1.45",
+    "inquirer": "^7.0.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5"
   },
   "bin": {
     "bitbucket_cli": "dist/index.js"
   },
   "devDependencies": {
     "rimraf": "^3.0.0",
+    "terser-webpack-plugin": "^2.3.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.4",
     "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10"
   }

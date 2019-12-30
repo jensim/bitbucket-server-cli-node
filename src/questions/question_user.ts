@@ -1,9 +1,10 @@
+import CliAnswer from "./cliAnswer";
 
-export default function (prevValues) {
+export default function (prevValues:CliAnswer) {
     let prev = prevValues["user"];
     let message = "BitBucket username";
     return {
-        name: "user",
+        "name": "user",
         message: message,
         default: prev,
     }

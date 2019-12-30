@@ -4,26 +4,27 @@ import question_projects from "./question_projects";
 import question_password from "./question_password";
 import store from "../store";
 
-const inquirer = require('inquirer');
+import * as inquirer from "inquirer";
+import {Answers} from "inquirer";
+import CliAnswer from "./cliAnswer";
 
-export async function ask() {
+
+export async function ask(): Promise<CliAnswer> {
     let prevAnswers = await store.read();
 
-    let prompt = inquirer.createPromptModule();
-    let answers1 = await prompt([
+    let prompt: inquirer.PromptModule = inquirer.createPromptModule();
+    let answers1:Answers = await prompt([
         question_server(prevAnswers),
         question_user(prevAnswers),
-        question_password
+        question_password,
     ]);
-    let answers2 = await prompt([
-        question_server(prevAnswers),
-        question_user(prevAnswers),
-        question_password
+    let answers2: Answers = await prompt([
+        await question_projects(answers1),
     ]);
 
     let copy = JSON.parse(JSON.stringify(answers1));
     delete copy["password"];
     await store.write(copy);
 
-    return answers1;
+    return {...answers1, ...answers2};
 }

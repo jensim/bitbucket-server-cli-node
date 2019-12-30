@@ -1,17 +1,23 @@
-var webpack = require('webpack');
-var path = require('path');
+const path = require('path');
 
 module.exports = {
-    mode: 'development',
+    entry: './src/index.ts',
     target: "node",
-    entry: './src/index.js',
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'index.js'
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+        ],
     },
-    devtool: "inline-source-map",
-    plugins: [
-        new webpack.BannerPlugin({banner: "#!/usr/bin/env node", raw: true}),
-        new webpack.SourceMapDevToolPlugin({}),
-    ],
+    devtool: 'inline-source-map',
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
+    },
+    output: {
+        filename: 'main.js',
+        path: path.resolve(__dirname, 'dist'),
+    },
 };
